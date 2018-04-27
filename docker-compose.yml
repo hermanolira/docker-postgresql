@@ -1,0 +1,24 @@
+# docker-compose -f stack.yml up
+
+# ou
+
+# docker run --name some-postgres -e POSTGRES_PASSWORD=mypass -d postgres
+# docker exec -it some-postgres bash
+# docker run -d --link some-postgres:postgres adminer
+
+# Use postgres/serpro2018 user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: serpro2018
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
